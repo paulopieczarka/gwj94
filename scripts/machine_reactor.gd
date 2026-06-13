@@ -1,47 +1,23 @@
-extends StaticBody2D
+extends Machine
 
-class_name Machine
+class_name MachineReactor
 
-@onready var tile_map_layer := $%TileMapLayer
+var charge := 100.0
 
-@onready var sprite := Sprite2D.new()
-@onready var collision := CollisionShape2D.new()
-@onready var interactable := InteractableComponent.new()
-@onready var label := Label.new()
-
-func _ready() -> void:
-	sprite.name = "Sprite2D"
-	sprite.texture = preload("res://assets/machine.png")
-	sprite.position = Vector2.ZERO
-	add_child(sprite)
-
-	var shape = RectangleShape2D.new()
-	shape.size = Vector2i(32, 32)
-
-	collision.shape = shape
-	add_child(collision)
-	
-	interactable.shape = shape
-	interactable.position = Vector2.ZERO
-	interactable.interacted.connect(on_interacted)
-	add_child(interactable)
-	
-	label.text = "100%"
-	label.position = Vector2(-7, -9)
-	label.add_theme_color_override("font_color", Color.WHITE)
-	label.add_theme_color_override("font_outline_color", Color.BLACK)
-	label.add_theme_constant_override("outline_size", 4)
-	label.add_theme_font_size_override("font_size", 8)
-	add_child(label)
-	
 func _process(delta: float) -> void:
-	pass
-
+	charge = maxf(charge - 60.0 * delta, 0.0)
+	
+	if charge <= 0.0:
+		mutate()
+		charge = 100.0
+	
+	label.text = str(int(charge)) + "%"
+	
 func on_interacted(actor: Node) -> void:
-	pass
+	print("Machine used by ", actor)
+	charge += 10
 
 func mutate() -> void:
-	pass
 	var walls: Array[Vector2i] = tile_map_layer.get_used_cells_by_id(0, Vector2i(0, 0))
 	var index := randi_range(0, walls.size() - 1)
 	var wall := walls[index]

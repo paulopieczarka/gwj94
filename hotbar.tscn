@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dsa7aacyba5kp"]
+
+[ext_resource type="Texture2D" uid="uid://clhqcrsl6oaoe" path="res://assets/inventory_slot.png" id="1_mjyg7"]
+
+[node name="Hotbar" type="Control" unique_id=1050567319]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=662136155]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=735505267]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+use_top_left = true
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/CenterContainer" unique_id=437208155]
+texture = ExtResource("1_mjyg7")
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer" unique_id=716091776]
+custom_minimum_size = Vector2(14, 16)
+layout_mode = 2
+use_top_left = true
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/CenterContainer2" unique_id=1645765078]
+texture = ExtResource("1_mjyg7")
