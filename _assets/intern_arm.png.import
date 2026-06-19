@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dil6seqnwh0dg"
-path="res://.godot/imported/intern.png-66f10bee0a108a5832146698be90c68d.ctex"
+uid="uid://dpisdete2scg2"
+path="res://.godot/imported/intern_arm.png-2ed04fa69ed910530e99ac6cd2026145.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/intern.png"
-dest_files=["res://.godot/imported/intern.png-66f10bee0a108a5832146698be90c68d.ctex"]
+source_file="res://_assets/intern_arm.png"
+dest_files=["res://.godot/imported/intern_arm.png-2ed04fa69ed910530e99ac6cd2026145.ctex"]
 
 [params]
 

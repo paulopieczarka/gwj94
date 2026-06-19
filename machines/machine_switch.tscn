@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://j650nuc0r7mp"]
+
+[ext_resource type="Script" uid="uid://iw8jbcybr3pl" path="res://machines/machine_switch.gd" id="1_w3c1c"]
+[ext_resource type="Texture2D" uid="uid://cvtj6nbiox5ad" path="res://_assets/machine.png" id="2_hrxo2"]
+[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://components/interactable_component.tscn" id="3_c20pd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bex42"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c20pd"]
+size = Vector2(32, 32)
+
+[node name="MachineSwitch" type="StaticBody2D" unique_id=2061894267]
+script = ExtResource("1_w3c1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=744756774]
+texture = ExtResource("2_hrxo2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1112915459]
+shape = SubResource("RectangleShape2D_bex42")
+
+[node name="InteractableComponent" parent="." unique_id=713084401 node_paths=PackedStringArray("sprite") instance=ExtResource("3_c20pd")]
+sprite = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=1597851306]
+shape = SubResource("RectangleShape2D_c20pd")

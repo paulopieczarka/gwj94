@@ -1,0 +1,309 @@
+[gd_scene format=3 uid="uid://gbd0stvh6j23"]
+
+[ext_resource type="Script" uid="uid://ch06lda55tyyk" path="res://players/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://dpisdete2scg2" path="res://_assets/intern_arm.png" id="2_dqkch"]
+[ext_resource type="Texture2D" uid="uid://c0vq4rhchcf06" path="res://_assets/intern_walking.png" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://components/interactable_component.tscn" id="5_g8xtg"]
+[ext_resource type="Texture2D" uid="uid://cq8ful7ivkpbo" path="res://_assets/intern_v3.png" id="5_k00sm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_smehm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(8, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8xtg"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_g8xtg"]
+length = 0.13333668
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Lower/RightFoot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_l1fvc"]
+resource_name = "idle_left"
+length = 0.13333668
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Upper/RightArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.055850536, 0.0, 0.030566884]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Upper/LeftArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.10995574, 0.0, -0.06017855]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1.0]
+}
+
+[sub_resource type="Animation" id="Animation_k00sm"]
+resource_name = "idle_right"
+length = 0.13333668
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Upper/RightArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.055850536, 0.0, 0.030566884]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Upper/LeftArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.10995574, 0.0, -0.06017855]
+}
+
+[sub_resource type="Animation" id="Animation_5illy"]
+resource_name = "walking_right"
+length = 0.13333668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Lower/RightFoot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.033333335, 0.06666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 10), Vector2(-1, 10), Vector2(-1, 10), Vector2(-1, 10), Vector2(-1, 10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g8xtg"]
+_data = {
+&"RESET": SubResource("Animation_g8xtg"),
+&"idle_left": SubResource("Animation_l1fvc"),
+&"idle_right": SubResource("Animation_k00sm"),
+&"walking_right": SubResource("Animation_5illy")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8xtg"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k00sm"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_l1fvc"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_g8xtg")
+blend_point_0/pos = -0.4
+blend_point_1/node = SubResource("AnimationNodeAnimation_k00sm")
+blend_point_1/pos = 0.3
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5illy"]
+animation = &"walking_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_0yn0j"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5illy")
+blend_point_0/pos = 0.6
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5illy"]
+graph_offset = Vector2(-291.14056, 140.51804)
+nodes/output/position = Vector2(600, 150)
+nodes/Idle/node = SubResource("AnimationNodeBlendSpace1D_l1fvc")
+nodes/Idle/position = Vector2(60, 160)
+nodes/Walking/node = SubResource("AnimationNodeBlendSpace1D_0yn0j")
+nodes/Walking/position = Vector2(-10, 400)
+node_connections = [&"output", 0, &"Idle"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1440142947]
+script = ExtResource("1_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=326277371]
+unique_name_in_owner = true
+position_smoothing_speed = 10.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=618833013]
+visible = false
+sprite_frames = SubResource("SpriteFrames_smehm")
+animation = &"walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=737654442]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="UpperLimbs" type="Node2D" parent="." unique_id=1372878561]
+visible = false
+z_as_relative = false
+
+[node name="RightArm" type="Node2D" parent="UpperLimbs" unique_id=233082466]
+z_as_relative = false
+position = Vector2(-4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="UpperLimbs/RightArm" unique_id=1394412017]
+texture = ExtResource("2_dqkch")
+centered = false
+offset = Vector2(-2, -1)
+
+[node name="LeftArm" type="Node2D" parent="UpperLimbs" unique_id=1358811403]
+z_as_relative = false
+position = Vector2(4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="UpperLimbs/LeftArm" unique_id=182421427]
+texture = ExtResource("2_dqkch")
+centered = false
+offset = Vector2(-2, -1)
+
+[node name="InteractableComponent" parent="." unique_id=321322412 node_paths=PackedStringArray("sprite") instance=ExtResource("5_g8xtg")]
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=1853782935]
+shape = SubResource("RectangleShape2D_g8xtg")
+
+[node name="Body" type="Node2D" parent="." unique_id=61052726]
+
+[node name="Head" type="Sprite2D" parent="Body" unique_id=270759329]
+z_index = 4
+texture = ExtResource("5_k00sm")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Body" type="Sprite2D" parent="Body" unique_id=1720290647]
+z_index = 2
+position = Vector2(0, 6)
+texture = ExtResource("5_k00sm")
+region_enabled = true
+region_rect = Rect2(0, 8, 8, 7)
+
+[node name="Upper" type="Node2D" parent="Body" unique_id=60774654]
+position = Vector2(0, 5)
+
+[node name="LeftArm" type="Node2D" parent="Body/Upper" unique_id=461337118]
+position = Vector2(4, -2)
+rotation = -0.050201934
+
+[node name="Sprite2D" type="Sprite2D" parent="Body/Upper/LeftArm" unique_id=1486901382]
+texture = ExtResource("5_k00sm")
+centered = false
+offset = Vector2(-2, -1)
+region_enabled = true
+region_rect = Rect2(8, 0, 4, 8)
+
+[node name="RightArm" type="Node2D" parent="Body/Upper" unique_id=773402283]
+position = Vector2(-4, -2)
+rotation = 0.025499394
+
+[node name="Sprite2D" type="Sprite2D" parent="Body/Upper/RightArm" unique_id=463060801]
+z_index = 4
+texture = ExtResource("5_k00sm")
+centered = false
+offset = Vector2(-2, -1)
+region_enabled = true
+region_rect = Rect2(8, 0, 4, 8)
+
+[node name="Lower" type="Node2D" parent="Body" unique_id=1825539094]
+
+[node name="RightFoot" type="Sprite2D" parent="Body/Lower" unique_id=1632949713]
+z_index = 1
+position = Vector2(-1, 10)
+texture = ExtResource("5_k00sm")
+region_enabled = true
+region_rect = Rect2(8, 8, 5, 4)
+
+[node name="LeftFoot" type="Sprite2D" parent="Body/Lower" unique_id=1874212985]
+position = Vector2(1, 10)
+texture = ExtResource("5_k00sm")
+region_enabled = true
+region_rect = Rect2(8, 8, 5, 4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=14206403]
+libraries/ = SubResource("AnimationLibrary_g8xtg")
+speed_scale = 0.15
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=298162436]
+tree_root = SubResource("AnimationNodeBlendTree_5illy")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = 1.0
+parameters/Walking/blend_position = 1.0
