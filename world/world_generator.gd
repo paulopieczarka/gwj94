@@ -48,7 +48,7 @@ func generate(width: int, height: int) -> Array[Array]:
 	while npc_count < 4:
 		var npc_spawn_point: Vector2i = spawn_region.pick_random()
 		var dist := spawn_point.distance_to(npc_spawn_point)
-		print(npc_spawn_point, dist)
+
 		if dist < 40:
 			grid[npc_spawn_point.y][npc_spawn_point.x] = Cell.NPC_POINT
 			npc_count += 1

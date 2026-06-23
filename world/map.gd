@@ -26,9 +26,9 @@ func _ready() -> void:
 				continue
 			
 			if grid[x][y] == WorldGenerator.Cell.NPC_POINT:
-				var npc := entity_scene.instantiate() as CharacterBody2D
-				npc.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(tile_pos))
-				$%Entities.add_child(npc)
+				#var npc := entity_scene.instantiate() as CharacterBody2D
+				#npc.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(tile_pos))
+				#$%Entities.add_child(npc)
 				continue
 			
 			if grid[x][y] == WorldGenerator.Cell.RESOURCE:
