@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Race" format=3 uid="uid://cjx8w71x8jn05"]
+
+[ext_resource type="Script" uid="uid://bjejc1kpb8v1b" path="res://players/races/race.gd" id="1_c7cbh"]
+[ext_resource type="Texture2D" uid="uid://jr2bjkpliauj" path="res://_assets/pack1.png" id="2_1fss2"]
+
+[resource]
+script = ExtResource("1_c7cbh")
+id = &"warrior"
+display_name = "Warrior"
+texture = ExtResource("2_1fss2")

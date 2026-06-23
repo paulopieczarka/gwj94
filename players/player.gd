@@ -6,34 +6,36 @@ const max_speed := 100
 const acceleration := 50
 const friction := 8
 
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var upper_limbs: Node2D = $UpperLimbs
-@onready var left_arm: Node2D = $UpperLimbs/LeftArm
-@onready var right_arm: Node2D = $UpperLimbs/RightArm
-@onready var left_arm_sprite: Sprite2D = $UpperLimbs/LeftArm/Sprite2D
-@onready var right_arm_sprite: Sprite2D = $UpperLimbs/RightArm/Sprite2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var sprite = $Sprite2D
+@onready var front_hand: Node2D = $Hand/Front
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var sfx: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-var left_arm_tween: Tween
-var right_arm_tween: Tween
-var is_holding_ranged_weapon := false
 var facing_left := false
+var locomotion: AnimationNodeStateMachinePlayback
 
 func _ready() -> void:
 	add_to_group("player")
 	
-	animated_sprite.z_index = 1
-	left_arm_sprite.z_index = 0
-	right_arm_sprite.z_index = 2
+	sprite.z_index = 1
 	
 	$InteractableComponent.interacted.connect(_on_interacted)
 	
+	animation_tree.active = true
+	locomotion = animation_tree.get("parameters/StateMachine/playback")
+	
 func _process(_delta: float) -> void:
+	var mouse_pos := get_global_mouse_position()
+	var is_left := mouse_pos.x < global_position.x
+
+	sprite.flip_h = is_left
+	
+	front_hand.look_at(mouse_pos)
+	front_hand.scale.y = -1 if is_left else 1
+
 	if Input.is_action_just_pressed("slot_1"):
-		is_holding_ranged_weapon = !is_holding_ranged_weapon
+		pass
+		#is_holding_ranged_weapon = !is_holding_ranged_weapon
 
 	if Input.is_action_just_pressed("interact"):
 		var query := PhysicsPointQueryParameters2D.new()
@@ -46,6 +48,11 @@ func _process(_delta: float) -> void:
 			var area := hit.collider as InteractableComponent
 
 			if area:
+				animation_tree.set(
+					"parameters/OneShot/request",
+					AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+				)
+				sfx.play()
 				area.interaction(self)
 				return
 
@@ -57,28 +64,13 @@ func _physics_process(delta: float) -> void:
 		"ui_down"
 	).normalized()
 	
-	if is_holding_ranged_weapon and not animation_player.is_playing():
-		animation_player.play(
-			"hold_ranged_weapon_" + ("left" if facing_left else "right"),
-			0.08
-		)
-	
-	if input.length() > 0.1:
-		animated_sprite.play("walking")
-		if not animation_player.is_playing():
-			animation_player.play("walking", 0.08)
-	else:
-		animated_sprite.stop()
-		if not is_holding_ranged_weapon:
-			animation_player.play("RESET", 0.08)
-		
-	if input.x != 0:
-		animation_tree.set("parameters/Idle/blend_position", input.x)
-		#var is_left := input.x < 0
-		
-	
 	var lerp_weight := delta * (acceleration if input else friction)
 	velocity = lerp(velocity, input * max_speed, lerp_weight)
+	
+	if velocity.length() > 1.0:
+		locomotion.travel("walking")
+	else:
+		locomotion.travel("idle")
 
 	move_and_slide()
 
