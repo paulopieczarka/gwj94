@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bh0r1p6gtyajc"]
 
 [ext_resource type="Texture2D" uid="uid://bd25n6xmib8iu" path="res://_assets/strange_body.png" id="1_dwetk"]
-[ext_resource type="Script" uid="uid://67gtjfq762yl" path="res://enemies/strange_body.gd" id="1_j1vvj"]
-[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://components/interactable_component.tscn" id="3_odv8x"]
+[ext_resource type="Script" uid="uid://67gtjfq762yl" path="res://entities/strange_body.gd" id="1_j1vvj"]
+[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://entities/components/interactable_component.tscn" id="3_odv8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1vvj"]
 size = Vector2(14, 14)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dtcddfbpserq"]
 
 [ext_resource type="Texture2D" uid="uid://jr2bjkpliauj" path="res://_assets/pack1.png" id="1_jm4vq"]
-[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://components/interactable_component.tscn" id="2_ep4xq"]
+[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://entities/components/interactable_component.tscn" id="2_ep4xq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lpio6"]
 size = Vector2(9, 16)

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ma1gpdyamt82"]
 
-[ext_resource type="Script" uid="uid://cxenwjovpsljs" path="res://machines/machine_reactor.gd" id="1_bex42"]
+[ext_resource type="Script" uid="uid://cxenwjovpsljs" path="res://entities/machine_reactor.gd" id="1_bex42"]
 [ext_resource type="Texture2D" uid="uid://cvtj6nbiox5ad" path="res://_assets/machine.png" id="1_lwql6"]
-[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://components/interactable_component.tscn" id="3_nsf4c"]
+[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://entities/components/interactable_component.tscn" id="3_nsf4c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bex42"]
 size = Vector2(32, 32)

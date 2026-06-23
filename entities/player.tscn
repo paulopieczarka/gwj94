@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://gbd0stvh6j23"]
 
-[ext_resource type="Script" uid="uid://ch06lda55tyyk" path="res://players/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://ch06lda55tyyk" path="res://entities/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://jr2bjkpliauj" path="res://_assets/pack1.png" id="3_k00sm"]
 [ext_resource type="Texture2D" uid="uid://c0vq4rhchcf06" path="res://_assets/intern_walking.png" id="3_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://components/interactable_component.tscn" id="5_g8xtg"]
+[ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://entities/components/interactable_component.tscn" id="5_g8xtg"]
 [ext_resource type="Texture2D" uid="uid://btwar78o73gmm" path="res://_assets/weapons.png" id="5_k00sm"]
 [ext_resource type="AudioStream" uid="uid://blkyumosdnks" path="res://_audios/attack.wav" id="6_k00sm"]
 

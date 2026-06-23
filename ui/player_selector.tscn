@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://jr2bjkpliauj" path="res://_assets/pack1.png" id="1_ulik0"]
 
 [sub_resource type="SystemFont" id="SystemFont_ulik0"]
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocsg0"]
 content_margin_left = 4.0
@@ -100,16 +101,6 @@ Button/styles/pressed = SubResource("StyleBoxFlat_0msua")
 [node name="PlayerSelector" type="Control" unique_id=1159904354]
 layout_mode = 3
 anchors_preset = 0
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=95487964]
-layout_mode = 0
-offset_left = -25.0
-offset_top = 38.0
-offset_right = 39.0
-offset_bottom = 103.0
-
-[node name="GridContainer" type="GridContainer" parent="." unique_id=176118425]
-layout_mode = 0
 
 [node name="Control" type="Control" parent="." unique_id=514853431]
 layout_mode = 1
