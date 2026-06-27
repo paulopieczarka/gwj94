@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	var lerp_weight := delta * (acceleration if input else friction)
 	velocity = lerp(velocity, input * max_speed, lerp_weight)
 	
-	if velocity.length() > 1.0:
+	if input != Vector2.ZERO:
 		locomotion.travel("walking")
 	else:
 		locomotion.travel("idle")

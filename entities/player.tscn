@@ -2,12 +2,22 @@
 
 [ext_resource type="Script" uid="uid://ch06lda55tyyk" path="res://entities/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://jr2bjkpliauj" path="res://_assets/pack1.png" id="3_k00sm"]
+[ext_resource type="Shader" uid="uid://dblwbun4vpfcx" path="res://_shaders/outline.gdshader" id="4_qsoyl"]
 [ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://entities/components/interactable_component.tscn" id="5_g8xtg"]
 [ext_resource type="Texture2D" uid="uid://btwar78o73gmm" path="res://_assets/weapons.png" id="5_k00sm"]
 [ext_resource type="AudioStream" uid="uid://blkyumosdnks" path="res://_audios/attack.wav" id="6_k00sm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(9, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6nm46"]
+shader = ExtResource("4_qsoyl")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(4, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8xtg"]
 size = Vector2(9, 16)
@@ -37,6 +47,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(3, 1.0000001)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_l1fvc"]
@@ -126,7 +148,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_k00sm"]
 resource_name = "walking"
-length = 0.1
+length = 0.13333667362071572
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -151,6 +173,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(3, 1.0000001), Vector2(2, 1), Vector2(4.3225017, 1), Vector2(3, 1.0000001)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666667, 0.099902175),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l1fvc"]
@@ -203,9 +237,10 @@ states/idle/position = Vector2(555.6875, 59)
 states/walking/node = SubResource("AnimationNodeAnimation_l1fvc")
 states/walking/position = Vector2(555.375, 203.5)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5illy"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_0yn0j"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ogrlw")]
+graph_offset = Vector2(-85.05011, -145.39507)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g8xtg"]
-graph_offset = Vector2(-267.1, 188.17847)
+graph_offset = Vector2(-315.2136, 57.90419)
 nodes/output/position = Vector2(810, 150)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_1jwom")
 nodes/StateMachine/position = Vector2(-70, 260)
@@ -228,8 +263,8 @@ region_filter_clip_enabled = true
 position = Vector2(-0.5, 6)
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="InteractableComponent" parent="." unique_id=321322412 node_paths=PackedStringArray("sprite") instance=ExtResource("5_g8xtg")]
-sprite = NodePath("../Sprite2D")
+[node name="InteractableComponent" parent="." unique_id=321322412 instance=ExtResource("5_g8xtg")]
+highlight_material = SubResource("ShaderMaterial_6nm46")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=1853782935]
 position = Vector2(-0.5, 0)
