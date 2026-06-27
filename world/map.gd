@@ -7,6 +7,8 @@ extends TileMapLayer
 @onready var player := $%Player
 @onready var tile_map_layer := $%TileMapLayer
 
+@export var mobs: Array[PackedScene]
+
 func _ready() -> void:
 	var generator := WorldGenerator.new()
 	var grid := generator.generate(256, 256)
@@ -29,6 +31,12 @@ func _ready() -> void:
 				#var npc := entity_scene.instantiate() as CharacterBody2D
 				#npc.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(tile_pos))
 				#$%Entities.add_child(npc)
+				continue
+				
+			if grid[x][y] == WorldGenerator.Cell.MOB_POINT:
+				var npc := mobs.pick_random().instantiate() as Entity
+				npc.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(tile_pos))
+				$%Entities.add_child(npc)
 				continue
 			
 			if grid[x][y] == WorldGenerator.Cell.RESOURCE:

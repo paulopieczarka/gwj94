@@ -2,25 +2,20 @@
 
 [ext_resource type="Script" uid="uid://ch06lda55tyyk" path="res://entities/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://jr2bjkpliauj" path="res://_assets/pack1.png" id="3_k00sm"]
-[ext_resource type="Shader" uid="uid://dblwbun4vpfcx" path="res://_shaders/outline.gdshader" id="4_qsoyl"]
+[ext_resource type="PackedScene" uid="uid://s5j0utb48150" path="res://entities/components/combat_component.tscn" id="5_6nm46"]
 [ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://entities/components/interactable_component.tscn" id="5_g8xtg"]
 [ext_resource type="Texture2D" uid="uid://btwar78o73gmm" path="res://_assets/weapons.png" id="5_k00sm"]
+[ext_resource type="Resource" uid="uid://caqaxsrk2qfy" path="res://items/item_weapon_sword.tres" id="6_6nm46"]
 [ext_resource type="AudioStream" uid="uid://blkyumosdnks" path="res://_audios/attack.wav" id="6_k00sm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(9, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6nm46"]
-shader = ExtResource("4_qsoyl")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/width = 1.0
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-shader_parameter/number_of_images = Vector2(4, 4)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8xtg"]
 size = Vector2(9, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6nm46"]
+radius = 13.0
 
 [sub_resource type="Animation" id="Animation_g8xtg"]
 length = 0.001
@@ -91,7 +86,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_0yn0j"]
 resource_name = "attack_sword"
-length = 0.1
+length = 0.13333667362071572
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -99,10 +95,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033340715, 0.06738334, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033299413, 0.033333335, 0.06738334, 0.06763943, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(4.0000005, 3), Vector2(7.9999995, 3), Vector2(6, 1), Vector2(4.0000005, 3)]
+"values": [Vector2(4.0000005, 3), Vector2(4, 0), Vector2(4.0000005, 3), Vector2(6, 1), Vector2(5.0000005, 7), Vector2(4.0000005, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -111,10 +107,10 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033340715, 0.06738334, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033299413, 0.033333335, 0.06738334, 0.06763943, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [1.3596115, 1.5707964, 2.0141098, 1.3596115]
+"values": [1.3596115, 0.20363581, 0.20245819323134262, 2.0141098, 2.274164, 1.3596115]
 }
 
 [sub_resource type="Animation" id="Animation_5illy"]
@@ -199,7 +195,7 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k00sm"]
 animation = &"attack_sword"
 use_custom_timeline = true
-timeline_length = 0.4
+timeline_length = 0.5
 stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 0
@@ -240,7 +236,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-85.05011, -145.39507)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g8xtg"]
-graph_offset = Vector2(-315.2136, 57.90419)
+graph_offset = Vector2(-216.96016, 587.52057)
 nodes/output/position = Vector2(810, 150)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_1jwom")
 nodes/StateMachine/position = Vector2(-70, 260)
@@ -264,11 +260,18 @@ position = Vector2(-0.5, 6)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="InteractableComponent" parent="." unique_id=321322412 instance=ExtResource("5_g8xtg")]
-highlight_material = SubResource("ShaderMaterial_6nm46")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=1853782935]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_g8xtg")
+
+[node name="CombatComponent" parent="." unique_id=2103855933 instance=ExtResource("5_6nm46")]
+weapon = ExtResource("6_6nm46")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatComponent" unique_id=759702719]
+position = Vector2(6, 1)
+shape = SubResource("CircleShape2D_6nm46")
+debug_color = Color(0.8258743, 0.12167042, 0.91070867, 0.41960785)
 
 [node name="Hand" type="Node2D" parent="." unique_id=479853967]
 

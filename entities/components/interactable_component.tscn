@@ -1,13 +1,6 @@
 [gd_scene format=3 uid="uid://duqq801siq6s7"]
 
 [ext_resource type="Script" uid="uid://binjmtxe205bl" path="res://entities/components/interactable_component.gd" id="1_ao1mr"]
-[ext_resource type="Shader" uid="uid://dblwbun4vpfcx" path="res://_shaders/outline.gdshader" id="2_rj0ad"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rj0ad"]
-shader = ExtResource("2_rj0ad")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/size = 1
-
-[node name="InteractableComponent" type="Area2D" unique_id=713084401]
+[node name="InteractableComponent" type="Area2D" unique_id=295093477]
 script = ExtResource("1_ao1mr")
-highlight_material = SubResource("ShaderMaterial_rj0ad")

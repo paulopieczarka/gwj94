@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 
 class_name Player
 
@@ -6,12 +6,11 @@ const max_speed := 100
 const acceleration := 50
 const friction := 8
 
-@onready var sprite = $Sprite2D
 @onready var front_hand: Node2D = $Hand/Front
+@onready var weapon_sprite: Sprite2D = $Hand/Front/Node2D/Sprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sfx: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-var facing_left := false
 var locomotion: AnimationNodeStateMachinePlayback
 
 func _ready() -> void:
@@ -20,6 +19,9 @@ func _ready() -> void:
 	sprite.z_index = 1
 	
 	$InteractableComponent.interacted.connect(_on_interacted)
+	
+	if $CombatComponent.weapon != null:
+		weapon_sprite.texture = $CombatComponent.weapon.sprite
 	
 	animation_tree.active = true
 	locomotion = animation_tree.get("parameters/StateMachine/playback")
@@ -32,12 +34,20 @@ func _process(_delta: float) -> void:
 	
 	front_hand.look_at(mouse_pos)
 	front_hand.scale.y = -1 if is_left else 1
+	
+	$CombatComponent.scale.x = -1 if is_left else 1
 
 	if Input.is_action_just_pressed("slot_1"):
 		pass
 		#is_holding_ranged_weapon = !is_holding_ranged_weapon
 
 	if Input.is_action_just_pressed("interact"):
+		if !animation_tree.get("parameters/OneShot/active"):
+			animation_tree.set(
+				"parameters/OneShot/request",
+				AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+			)
+				
 		var query := PhysicsPointQueryParameters2D.new()
 		query.position = get_global_mouse_position()
 		query.collision_mask = 2
@@ -48,10 +58,7 @@ func _process(_delta: float) -> void:
 			var area := hit.collider as InteractableComponent
 
 			if area:
-				animation_tree.set(
-					"parameters/OneShot/request",
-					AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-				)
+				
 				sfx.play()
 				area.interaction(self)
 				return

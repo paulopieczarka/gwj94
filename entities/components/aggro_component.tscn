@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dquh4q5i7kkki"]
+
+[ext_resource type="Script" uid="uid://cimhekubq3hic" path="res://entities/components/aggro_component.gd" id="1_7xw3l"]
+
+[node name="AggroComponent" type="Area2D" unique_id=1448870019]
+collision_layer = 2
+script = ExtResource("1_7xw3l")

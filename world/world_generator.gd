@@ -2,7 +2,7 @@ extends Node
 
 class_name WorldGenerator
 
-enum Cell { WALL, FLOOR, SPAWN_POINT, RESOURCE, NPC_POINT }
+enum Cell { WALL, FLOOR, SPAWN_POINT, RESOURCE, NPC_POINT, MOB_POINT }
 
 func generate(width: int, height: int) -> Array[Array]:
 	var grid := _init_grid(width, height)
@@ -20,6 +20,10 @@ func generate(width: int, height: int) -> Array[Array]:
 	
 	var spawn_point: Vector2i = best_spawn_region.pick_random()
 	grid[spawn_point.x][spawn_point.y] = Cell.SPAWN_POINT
+	
+	for i in range(200):
+		var point: Vector2i = best_spawn_region.pick_random()
+		grid[point.x][point.y] = Cell.MOB_POINT
 	
 	for region in _get_regions(grid, Cell.WALL):
 		if region.size() < 50:

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://7iiinrluslk2"]
+
+[ext_resource type="Script" uid="uid://paleu5x4o0pd" path="res://entities/components/targetable_component.gd" id="1_o5xcf"]
+
+[node name="TargetableComponent" type="Area2D" unique_id=25792410]
+script = ExtResource("1_o5xcf")
