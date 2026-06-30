@@ -4,15 +4,16 @@ extends TileMapLayer
 @export var entity_scene: PackedScene
 
 @onready var marker := $%Marker
-@onready var player := $%Player
 @onready var tile_map_layer := $%TileMapLayer
 
+@export var player_scene: PackedScene
 @export var mobs: Array[PackedScene]
 
 func _ready() -> void:
 	var generator := WorldGenerator.new()
 	var grid := generator.generate(256, 256)
 	
+	assert(player_scene != null, "Missing: player scene.")
 	assert(strange_body_scene != null, "Missing: strange body.")
 	
 	for y in grid.size():
@@ -21,7 +22,9 @@ func _ready() -> void:
 			set_cell(tile_pos, 0, Vector2i(1, 0))
 
 			if grid[y][x] == WorldGenerator.Cell.SPAWN_POINT:
+				var player := player_scene.instantiate() as EntityCharacter
 				player.global_position = tile_map_layer.to_global(tile_map_layer.map_to_local(tile_pos))
+				$%Entities.add_child(player)
 				continue
 				
 			if grid[x][y] == WorldGenerator.Cell.FLOOR:

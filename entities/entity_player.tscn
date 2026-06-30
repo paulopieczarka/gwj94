@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cyeloxjwcnaak"]
+
+[ext_resource type="PackedScene" uid="uid://gbd0stvh6j23" path="res://entities/entity_character.tscn" id="1_jq1ds"]
+[ext_resource type="Script" uid="uid://qw8e6no4sget" path="res://entities/entity_player.gd" id="2_7if2w"]
+[ext_resource type="PackedScene" uid="uid://okv48vobhose" path="res://items/item_weapon_sword.tscn" id="3_wmj61"]
+
+[sub_resource type="Gradient" id="Gradient_7mycd"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jq1ds"]
+gradient = SubResource("Gradient_7mycd")
+width = 500
+height = 500
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="EntityPlayer" unique_id=1589950152 instance=ExtResource("1_jq1ds")]
+script = ExtResource("2_7if2w")
+title = "Player"
+
+[node name="HealthComponent" parent="." index="4" unique_id=1363979014]
+visible = false
+
+[node name="Front" parent="Hand" parent_id_path=PackedInt32Array(1067863070) index="0" unique_id=299805421]
+position = Vector2(-2, 2)
+
+[node name="ItemWeaponSword" parent="Hand/Front" index="0" unique_id=384028653 instance=ExtResource("3_wmj61")]
+z_index = 10
+
+[node name="Node2D" parent="Hand/Front" index="1" unique_id=699532449]
+visible = false
+
+[node name="DirectionalLight2D" type="PointLight2D" parent="." index="8" unique_id=419771272]
+position = Vector2(6, 20)
+shadow_color = Color(0.096204735, 0.09620475, 0.096204735, 0)
+texture = SubResource("GradientTexture2D_jq1ds")
+height = 0.2
+
+[node name="Camera2D" type="Camera2D" parent="." index="9" unique_id=356637649]
+position_smoothing_speed = 10.0

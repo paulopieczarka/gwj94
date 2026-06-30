@@ -2,5 +2,16 @@
 
 [ext_resource type="Script" uid="uid://df4xxmb3uyav7" path="res://entities/components/health_component.gd" id="1_qlwiv"]
 
-[node name="HealthComponent" type="Node2D" unique_id=1363979014]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlwiv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5t5e"]
+bg_color = Color(1, 0.21960784, 0.21176471, 1)
+corner_detail = 1
+
+[node name="HealthComponent" type="ProgressBar" unique_id=1885776356]
+offset_right = 15.0
+offset_bottom = 4.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qlwiv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b5t5e")
+show_percentage = false
 script = ExtResource("1_qlwiv")

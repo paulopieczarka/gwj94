@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemWeapon" format=3 uid="uid://cds5vp154ukfy"]
+
+[ext_resource type="Script" uid="uid://bsbuvikrd3irh" path="res://items/item_weapon.gd" id="1_430an"]
+[ext_resource type="Texture2D" uid="uid://btwar78o73gmm" path="res://_assets/weapons.png" id="2_pj1yw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn8fi"]
+atlas = ExtResource("2_pj1yw")
+region = Rect2(0, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_430an")
+title = "Dagger"
+description = "A daga"
+sprite = SubResource("AtlasTexture_yn8fi")

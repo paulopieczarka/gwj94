@@ -12,4 +12,3 @@ script = ExtResource("1_h7ndt")
 title = "Oak Staff"
 description = "Organic Staff"
 sprite = SubResource("AtlasTexture_8se3q")
-hand_position = Vector2(4, 3)

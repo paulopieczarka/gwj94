@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c10mffrqwbf2x"]
+
+[ext_resource type="PackedScene" uid="uid://gbd0stvh6j23" path="res://entities/entity_character.tscn" id="1_epohr"]
+[ext_resource type="PackedScene" uid="uid://dquh4q5i7kkki" path="res://entities/components/aggro_component.tscn" id="2_3osf0"]
+[ext_resource type="Resource" uid="uid://cds5vp154ukfy" path="res://items/item_weapon_dagger.tres" id="2_588ol"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lpio6"]
+radius = 70.028564
+
+[node name="EntityMob" unique_id=1589950152 instance=ExtResource("1_epohr")]
+title = "Mob"
+
+[node name="Sprite2D" parent="." index="0" unique_id=1657805830]
+region_rect = Rect2(16, 32, 16, 16)
+
+[node name="AggroComponent" parent="." index="3" unique_id=1448870019 instance=ExtResource("2_3osf0")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroComponent" index="0" unique_id=145095361]
+shape = SubResource("CircleShape2D_lpio6")
+
+[node name="CombatComponent" parent="." index="4" unique_id=428850018]
+weapon = ExtResource("2_588ol")

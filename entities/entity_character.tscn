@@ -1,21 +1,22 @@
 [gd_scene format=3 uid="uid://gbd0stvh6j23"]
 
-[ext_resource type="Script" uid="uid://ch06lda55tyyk" path="res://entities/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://ch06lda55tyyk" path="res://entities/entity_character.gd" id="1_ijrpi"]
 [ext_resource type="Texture2D" uid="uid://jr2bjkpliauj" path="res://_assets/pack1.png" id="3_k00sm"]
 [ext_resource type="PackedScene" uid="uid://s5j0utb48150" path="res://entities/components/combat_component.tscn" id="5_6nm46"]
 [ext_resource type="PackedScene" uid="uid://duqq801siq6s7" path="res://entities/components/interactable_component.tscn" id="5_g8xtg"]
 [ext_resource type="Texture2D" uid="uid://btwar78o73gmm" path="res://_assets/weapons.png" id="5_k00sm"]
 [ext_resource type="Resource" uid="uid://caqaxsrk2qfy" path="res://items/item_weapon_sword.tres" id="6_6nm46"]
+[ext_resource type="PackedScene" uid="uid://cdhdomhf7wjuj" path="res://entities/components/health_component.tscn" id="6_jbe43"]
 [ext_resource type="AudioStream" uid="uid://blkyumosdnks" path="res://_audios/attack.wav" id="6_k00sm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gef08"]
 size = Vector2(9, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8xtg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbe43"]
 size = Vector2(9, 16)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6nm46"]
-radius = 13.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vv8g"]
+radius = 23.94
 
 [sub_resource type="Animation" id="Animation_g8xtg"]
 length = 0.001
@@ -110,7 +111,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.033299413, 0.033333335, 0.06738334, 0.06763943, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [1.3596115, 0.20363581, 0.20245819323134262, 2.0141098, 2.274164, 1.3596115]
+"values": [1.3596115, 0.20363581, 0.20245819323134265, 2.0141098, 2.274164, 1.3596115]
 }
 
 [sub_resource type="Animation" id="Animation_5illy"]
@@ -183,7 +184,7 @@ tracks/2/keys = {
 "values": [Vector2(0, -1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1fvc"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_102w2"]
 _data = {
 &"RESET": SubResource("Animation_g8xtg"),
 &"attack": SubResource("Animation_l1fvc"),
@@ -235,8 +236,8 @@ states/walking/position = Vector2(555.375, 203.5)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5illy"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_0yn0j"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ogrlw")]
 graph_offset = Vector2(-85.05011, -145.39507)
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g8xtg"]
-graph_offset = Vector2(-216.96016, 587.52057)
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_kjbre"]
+graph_offset = Vector2(-216.96016, 378.3617)
 nodes/output/position = Vector2(810, 150)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_1jwom")
 nodes/StateMachine/position = Vector2(-70, 260)
@@ -246,40 +247,46 @@ nodes/Attack/node = SubResource("AnimationNodeAnimation_k00sm")
 nodes/Attack/position = Vector2(30, 630)
 node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"StateMachine", &"OneShot", 1, &"Attack"]
 
-[node name="Player" type="CharacterBody2D" unique_id=1440142947]
-script = ExtResource("1_g2els")
+[node name="EntityCharacter" type="CharacterBody2D" unique_id=1589950152]
+script = ExtResource("1_ijrpi")
+metadata/_custom_type_script = "uid://ch06lda55tyyk"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=714707870]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1657805830]
 texture = ExtResource("3_k00sm")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 region_filter_clip_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=737654442]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1352989573]
 position = Vector2(-0.5, 6)
-shape = SubResource("RectangleShape2D_g2els")
+shape = SubResource("RectangleShape2D_gef08")
 
-[node name="InteractableComponent" parent="." unique_id=321322412 instance=ExtResource("5_g8xtg")]
+[node name="InteractableComponent" parent="." unique_id=295093477 instance=ExtResource("5_g8xtg")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=1853782935]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=1646316193]
 position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_g8xtg")
+shape = SubResource("RectangleShape2D_jbe43")
 
-[node name="CombatComponent" parent="." unique_id=2103855933 instance=ExtResource("5_6nm46")]
+[node name="CombatComponent" parent="." unique_id=428850018 instance=ExtResource("5_6nm46")]
 weapon = ExtResource("6_6nm46")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatComponent" unique_id=759702719]
-position = Vector2(6, 1)
-shape = SubResource("CircleShape2D_6nm46")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatComponent" unique_id=532093022]
+shape = SubResource("CircleShape2D_4vv8g")
 debug_color = Color(0.8258743, 0.12167042, 0.91070867, 0.41960785)
 
-[node name="Hand" type="Node2D" parent="." unique_id=479853967]
+[node name="HealthComponent" parent="." unique_id=1363979014 instance=ExtResource("6_jbe43")]
+offset_left = -8.0
+offset_top = -13.0
+offset_right = 7.0
+offset_bottom = -9.0
 
-[node name="Front" type="Node2D" parent="Hand" unique_id=913188091]
+[node name="Hand" type="Node2D" parent="." unique_id=1067863070]
 
-[node name="Node2D" type="Node2D" parent="Hand/Front" unique_id=76754039]
+[node name="Front" type="Node2D" parent="Hand" unique_id=299805421]
 
-[node name="Sprite2D" type="Sprite2D" parent="Hand/Front/Node2D" unique_id=83817509]
+[node name="Node2D" type="Node2D" parent="Hand/Front" unique_id=699532449]
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand/Front/Node2D" unique_id=2089343888]
 z_index = 10
 position = Vector2(3, 1.0000001)
 rotation = 0.43633232
@@ -287,21 +294,21 @@ texture = ExtResource("5_k00sm")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Back" type="Node2D" parent="Hand" unique_id=649631538]
+[node name="Back" type="Node2D" parent="Hand" unique_id=1350142489]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1814063534]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=406360956]
 root_node = NodePath("../Hand/Front/Node2D/Sprite2D")
-libraries/ = SubResource("AnimationLibrary_l1fvc")
+libraries/ = SubResource("AnimationLibrary_102w2")
 blend_times = [&"idle", &"RESET", 0.3, &"idle", &"attack", 0.3, &"idle", &"idle", 0.3, &"idle", &"walking", 0.3]
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1195495989]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1930941960]
 active = false
 root_node = NodePath("../Hand/Front/Node2D/Sprite2D")
-tree_root = SubResource("AnimationNodeBlendTree_g8xtg")
+tree_root = SubResource("AnimationNodeBlendTree_kjbre")
 anim_player = NodePath("../AnimationPlayer")
 parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1812268403]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=397032346]
 stream = ExtResource("6_k00sm")

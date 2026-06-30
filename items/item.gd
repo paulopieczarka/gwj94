@@ -8,3 +8,5 @@ class_name Item
 @export var sprite: Texture2D
 
 @export var hand_position: Vector2
+
+@export var scene: PackedScene

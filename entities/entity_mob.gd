@@ -1,4 +1,4 @@
-extends Entity
+extends EntityCharacter
 
 class_name EntityMob
 
@@ -12,6 +12,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	
-	if aggro_component != null:
-		facing_left = aggro_component.target.position.x < global_position.x
-		velocity.move_toward(aggro_component.target.position, delta)
+	facing_left = aggro_component.target.position.x < global_position.x
+	velocity.move_toward(aggro_component.target.position, delta)
